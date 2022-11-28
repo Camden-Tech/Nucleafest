@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/camde/Desktop/GAME/StreamGame/StreamGame/Content/Basic Tile.png","C:/Users/camde/Desktop/GAME/StreamGame/StreamGame/Content/bin/Windows/Content/Basic Tile.xnb","TextureProcessor","Texture2DContent",414,4181,0.3402833
+"C:/Users/camde/Desktop/GAME/StreamGame/StreamGame/Content/Character.png","C:/Users/camde/Desktop/GAME/StreamGame/StreamGame/Content/bin/Windows/Content/Character.xnb","TextureProcessor","Texture2DContent",252,2133,0.0061148
