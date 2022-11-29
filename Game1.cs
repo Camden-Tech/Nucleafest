@@ -12,7 +12,6 @@ namespace StreamGame
         private SpriteBatch _spriteBatch;
         public GameState gameState = GameState.StartMenu;
         public List<Tile> tiles = new List<Tile>();
-        public float chunkLoadDistance = 0;
         
         public enum GameState {
             StartMenu, 
@@ -69,20 +68,9 @@ namespace StreamGame
            
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                if (Player.dashingCooldown <= 0)
-                {
-                    Player.dashingCooldown = Player.dTime + Player.dCooldown;
-                    
-                    
-                }
+                Player.attemptDash();
             }
-            if (Player.dashingCooldown - Player.dCooldown > 0)
-            {
-                Player.xVelocity = Player.dashingSpeed;
-                Player.yVelocity = 0;
-                Player.timeInAir = 0;
-
-            }
+            Player.commenceDash();
             Player.onGround = false;
             for (int i = 0; i < tiles.Count; i++)
             {

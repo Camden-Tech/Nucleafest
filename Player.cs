@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace StreamGame
@@ -24,8 +25,8 @@ namespace StreamGame
         public static int balloons = 0; //Amount of placable double jumps
         public static int enemiesKilled = 0; //How many enemies the player has killed
         public static int timeTaken = 0; //How long the player has been playing
-        public static float dashingSpeed = 20; //Change this * //Speed of a dash
-        public static float walkingSpeed = 13; //Change this * //Walking Speed of the Player
+        public static float dashingSpeed = 9; //Change this * //Speed of a dash
+        public static float walkingSpeed = 6; //Change this * //Walking Speed of the Player
         public static float jumpingSpeed = 14f; //Change this * //Jumping Speed of the Player
         public static Boolean colorFlip = false; //Whether the colors are inverted
 
@@ -39,6 +40,15 @@ namespace StreamGame
         public static float xVelocity = 0; //Players X Velocity
         public static Boolean onGround = false; //Whether Player is On Ground
         public static float yVelocity = 0; //Players Y Velocity
+        public enum DashDirection
+        {
+            Left,
+            Right,
+            Down,
+            none
+        }
+        public static DashDirection dashDirection = DashDirection.none;
+
 
         public static Vector2 topRightHitbox = new Vector2(width, 0); //Hitbox Stuff
         public static Vector2 bottomRightHitbox = new Vector2(width, -height);
@@ -46,11 +56,69 @@ namespace StreamGame
         public static Vector2 bottomLeftHitbox = new Vector2(0, -height);
 
         public static void changeSizes(float w, float h)
-        { 
+        {
             width = w;
             height = h;
             heightRatio = height / sprite.Height;
             widthRatio = width / sprite.Width;
+        }
+
+        public static Boolean attemptDash()
+        {
+            if (Player.dashingCooldown <= 0)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                {
+                    dashDirection = DashDirection.Down;
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+                    dashDirection = DashDirection.Left;
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.D))
+                {
+                    dashDirection = DashDirection.Right;
+                }
+                else
+                {
+                    dashDirection = DashDirection.none;
+                }
+                if (dashDirection != DashDirection.none)
+                {
+                    Player.dashingCooldown = Player.dTime + Player.dCooldown;
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public static void commenceDash()
+        {
+            if (Player.dashingCooldown - Player.dCooldown > 0)
+            {
+                if (dashDirection != DashDirection.none)
+                {
+                    Player.yVelocity = 0;
+                    Player.xVelocity = 0;
+                    if (dashDirection == DashDirection.Right)
+                    {
+                        Player.xVelocity = Player.dashingSpeed;
+                    }
+                    if (dashDirection == DashDirection.Left)
+                    {
+                        Player.xVelocity = -Player.dashingSpeed;
+                    }
+                    if (dashDirection == DashDirection.Down)
+                    {
+                        Player.yVelocity = -Player.dashingSpeed;
+                    }
+                    Player.timeInAir = 0;
+                }
+
+
+
+            }
         }
 
 
