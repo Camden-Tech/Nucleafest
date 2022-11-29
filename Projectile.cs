@@ -13,10 +13,26 @@ namespace StreamGame
 		public float y;
 		public float xVelocity;
 		public float yVelocity;
-		public float width;
-		public float height;
-		public float heightRatio;
-		public float widthRatio;
+		private float _width;
+		private float _height;
+		private float _heightRatio;
+		private float _widthRatio;
+		public abstract float width
+		{
+			get => _width;  
+		};
+		public abstract float height
+		{
+			get => _height;  
+		};
+		public abstract float widthRatio
+		{
+			get => _widthRatio;  
+		};
+		public abstract float heightRatio
+		{
+			get => _heightRatio;
+		};
 		public Texture2D sprite;
 		public int damage;
 		public int time;
