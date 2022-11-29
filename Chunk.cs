@@ -8,14 +8,30 @@ using System.Threading.Tasks;
 namespace StreamGame
 {
 	public class Chunk{
-		public int x;
-		public int y;
+		private int _x;
+		private int _y;
+		public abstract int x
+		{
+			get => _X	
+		};
+		
+		public abstract int y
+		{
+			get => _y	
+		};
 		private List<Tile> tiles;
 		private List<Projectile> projectiles;
 		private List<Entity> entities;
-		public const int chunkLength = 150;
-		public const int chunkLoadDistance = 450;
+		public const int chunkLength = 1500; //I have to hardcode this. The amount of effort I'll have to put it in order to NOT would honestly be too much and not enough reward
+		public const int chunkLoadDistance = 4500; //Change this later to be configured in options menu. Also prevent yml changes to the file in order to change how far is can load below the minimum limit
 		
+		
+		public Chunk(int xPos, int yPos){
+			//load tiles, projectiles, and entities from file if a file exists
+			x = xPos;
+			y = yPos;
+			//Add chunks to loaded chunk list
+		}
 
 		public List<Tile> getTiles()
 		{
@@ -72,7 +88,7 @@ namespace StreamGame
 		{
 			return new Vector2(X / chunkLength, Y / chunkLength);
 		}
-
+		
 		public Boolean isStillInChunk(int X, int Y)
 		{
 			if (inWhatChunk(X, Y).Equals(new Vector2(x, y)))
