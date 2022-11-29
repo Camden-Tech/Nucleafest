@@ -13,23 +13,23 @@ namespace StreamGame
     {
         public static float x = -50; //X Position
         public static float y = 570; //Y Position
-        private float _width = 30;
-        private float _height = 60;
-        private float _heightRatio;
-        private float _widthRatio;
-        public abstract float width
+        private static float _width = 30;
+        private static float _height = 60;
+        private static float _heightRatio;
+        private static float _widthRatio;
+        public static abstract float width
         {
             get => _width;  
         };
-        public abstract float height
+        public static abstract float height
         {
             get => _height;  
         };
-        public abstract float widthRatio
+        public static abstract float widthRatio
         {
             get => _widthRatio;  
         };
-        public abstract float heightRatio
+        public static abstract float heightRatio
         {
             get => _heightRatio;
         };
