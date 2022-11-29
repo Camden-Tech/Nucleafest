@@ -15,25 +15,25 @@ namespace StreamGame
         public float xVelocity;
         public float yVelocity;
         private float _width;
-		private float _height;
-		private float _heightRatio;
-		private float _widthRatio;
-		public abstract float width
-		{
-			get => _width;  
-		};
-		public abstract float height
-		{
-			get => _height;  
-		};
-		public abstract float widthRatio
-		{
-			get => _widthRatio;  
-		};
-		public abstract float heightRatio
-		{
-			get => _heightRatio;
-		};
+	private float _height;
+	private float _heightRatio;
+	private float _widthRatio;
+	public abstract float width
+	{
+		get => _width;  
+	};
+	public abstract float height
+	{
+		get => _height;  
+	};
+	public abstract float widthRatio
+	{
+		get => _widthRatio;  
+	};
+	public abstract float heightRatio
+	{
+		get => _heightRatio;
+	};
         public int damage;
         public int maxHealth;
         public int health;
