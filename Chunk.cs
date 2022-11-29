@@ -10,11 +10,12 @@ namespace StreamGame
 	public class Chunk{
 		public int x;
 		public int y;
-		public List<Tile> tiles;
-		public List<Entity> entities;
+		private List<Tile> tiles;
+		private List<Projectile> projectiles;
+		private List<Entity> entities;
 		public const int chunkLength = 150;
 		public const int chunkLoadDistance = 450;
-		public List<Projectile> projectiles;
+		
 
 		public List<Tile> getTiles()
 		{
