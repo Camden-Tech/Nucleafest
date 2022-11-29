@@ -14,8 +14,16 @@ namespace StreamGame
         public float y;
         public float xVelocity;
         public float yVelocity;
-        public float width;
-        public float height;
+        private float _width;
+        private float _height;
+        public abstract float width
+        {
+          get => _width;  
+        };
+        public abstract float height
+        {
+          get => _height;  
+        };
         public int damage;
         public int maxHealth;
         public int health;
@@ -28,8 +36,8 @@ namespace StreamGame
 
         public void changeSizes(float w, float h)
         {
-            width = w;
-            height = h;
+            _width = w;
+            _height = h;
             heightRatio = height / sprite.Height;
             widthRatio = width / sprite.Width;
         }
