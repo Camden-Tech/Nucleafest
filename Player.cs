@@ -11,8 +11,27 @@ namespace StreamGame
 {
     public static class Player
     {
-        public static float x = -50; //X Position
-        public static float y = 570; //Y Position
+        private static float _x = -50; //X Position
+        private static float _y = 570; //Y Position
+        public static float x
+        {
+          get => _x;  
+          set
+          {
+              _x = value;
+              //Check for possible chunk load
+          }
+        };
+        public static float y
+        {
+          get => _y;
+          set
+          {
+              _y = value;
+              //Check for possible chunk load
+          }
+        };
+        
         private static float _width = 30;
         private static float _height = 60;
         private static float _heightRatio;
