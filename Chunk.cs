@@ -12,7 +12,7 @@ namespace StreamGame
 		public int y;
 		public List<Tile> tiles;
 		public List<Entity> entities;
-		public const int chunkLength = 
+		public const int chunkLength = 64;
 		public List<Projectile> projectiles;
 
 		public List<Tile> getTiles()
