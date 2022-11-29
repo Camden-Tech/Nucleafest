@@ -13,11 +13,27 @@ namespace StreamGame
     {
         public static float x = -50; //X Position
         public static float y = 570; //Y Position
-        public static float width = 30; //Change this * //Sprite width and height of the Player (use in hitbox collision and sprite rendering)
-        public static float height = 60; //Change this * //Sprite width and height of the Player (use in hitbox collision and sprite rendering)
+        private float _width = 30;
+        private float _height = 60;
+        private float _heightRatio;
+        private float _widthRatio;
+        public abstract float width
+        {
+            get => _width;  
+        };
+        public abstract float height
+        {
+            get => _height;  
+        };
+        public abstract float widthRatio
+        {
+            get => _widthRatio;  
+        };
+        public abstract float heightRatio
+        {
+            get => _heightRatio;
+        };
         public static Texture2D sprite;
-        public static float widthRatio;
-        public static float heightRatio;
 
         public static int health = 1; //Player's Health
         public static int maxHealth = 1; //Change this * //Players Max Health
@@ -57,10 +73,10 @@ namespace StreamGame
 
         public static void changeSizes(float w, float h)
         {
-            width = w;
-            height = h;
-            heightRatio = height / sprite.Height;
-            widthRatio = width / sprite.Width;
+            _width = w;
+            _height = h;
+            _heightRatio = height / sprite.Height;
+            _widthRatio = width / sprite.Width;
         }
 
         public static Boolean attemptDash()
