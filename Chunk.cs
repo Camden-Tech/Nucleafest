@@ -24,7 +24,7 @@ namespace StreamGame
 		private List<Entity> entities;
 		public const int chunkLength = 1500; //I have to hardcode this. The amount of effort I'll have to put it in order to NOT would honestly be too much and not enough reward
 		public const int chunkLoadDistance = 4500; //Change this later to be configured in options menu. Also prevent yml changes to the file in order to change how far is can load below the minimum limit
-		
+		public static List<Chunk> loadedChunks = new List<Chunk>();
 		
 		public Chunk(int xPos, int yPos){
 			//load tiles, projectiles, and entities from file if a file exists
@@ -83,10 +83,25 @@ namespace StreamGame
 				}
 			}
 		}
-
+		
+		public static Boolean chunkIsLoaded(int x, int y){
+			for(int i = 0; i < loadedChunks.count; i++)
+			{
+				Chunk c = loadedChunks[i];
+				//Continue when i get internet
+			}
+		}
+		
+		
 		public static Vector2 inWhatChunk(int X, int Y)
 		{
 			return new Vector2(X / chunkLength, Y / chunkLength);
+		}
+		
+		public static void attemptLoadChunk(int x, int y)
+		{
+			
+			if(loadedChunks.contains) 
 		}
 		
 		public Boolean isStillInChunk(int X, int Y)
