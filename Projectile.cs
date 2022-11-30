@@ -17,22 +17,22 @@ namespace StreamGame
 		private float _height;
 		private float _heightRatio;
 		private float _widthRatio;
-		public abstract float width
+		public float width
 		{
 			get => _width;  
-		};
-		public abstract float height
+		}
+		public float height
 		{
 			get => _height;  
-		};
-		public abstract float widthRatio
+		}
+		public float widthRatio
 		{
 			get => _widthRatio;  
-		};
-		public abstract float heightRatio
+		}
+		public float heightRatio
 		{
 			get => _heightRatio;
-		};
+		}
 		public Texture2D sprite;
 		public int damage;
 		public int time;
@@ -53,10 +53,10 @@ namespace StreamGame
 
 		public void changeSizes(float w, float h)
 		{
-			width = w;
-			height = h;
-			heightRatio = height / sprite.Height;
-			widthRatio = width / sprite.Width;
+			_width = w;
+			_height = h;
+			_heightRatio = height / sprite.Height;
+			_widthRatio = width / sprite.Width;
 		}
 
 		public Boolean CheckHitboxWithEntity(Entity e){

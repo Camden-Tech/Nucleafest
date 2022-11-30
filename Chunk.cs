@@ -10,15 +10,15 @@ namespace StreamGame
 	public class Chunk{
 		private int _x;
 		private int _y;
-		public abstract int x
+		public int x
 		{
-			get => _X	
-		};
-		
-		public abstract int y
+			get { return _x; }
+
+		}
+		public int y
 		{
-			get => _y	
-		};
+			get { return _y; }
+		}
 		private List<Tile> tiles;
 		private List<Projectile> projectiles;
 		private List<Entity> entities;
@@ -28,9 +28,8 @@ namespace StreamGame
 		
 		public Chunk(int xPos, int yPos){
 			//load tiles, projectiles, and entities from file if a file exists
-			x = xPos;
-			y = yPos;
-			//Add chunks to loaded chunk list
+			_x = xPos;
+			_y = yPos;
 		}
 
 		public List<Tile> getTiles()
@@ -85,11 +84,15 @@ namespace StreamGame
 		}
 		
 		public static Boolean chunkIsLoaded(int x, int y){
-			for(int i = 0; i < loadedChunks.count; i++)
+			for(int i = 0; i < loadedChunks.Count; i++)
 			{
 				Chunk c = loadedChunks[i];
-				//Continue when i get internet
+                if (c.x == x && c.y == y)
+                {
+					return true;
+                }
 			}
+			return false;
 		}
 		
 		
@@ -100,8 +103,15 @@ namespace StreamGame
 		
 		public static void attemptLoadChunk(int x, int y)
 		{
-			
-			if(loadedChunks.contains) 
+
+            if (chunkIsLoaded(x,y))
+            {
+				return;
+            }
+			Chunk c = new Chunk(x,y);
+			loadedChunks.Add(c);
+
+
 		}
 		
 		public Boolean isStillInChunk(int X, int Y)

@@ -21,7 +21,7 @@ namespace StreamGame
               _x = value;
               //Check for possible chunk load
           }
-        };
+        }
         public static float y
         {
           get => _y;
@@ -30,28 +30,27 @@ namespace StreamGame
               _y = value;
               //Check for possible chunk load
           }
-        };
-        
+        }
         private static float _width = 30;
         private static float _height = 60;
         private static float _heightRatio;
         private static float _widthRatio;
-        public static abstract float width
+        public static float width
         {
-            get => _width;  
-        };
-        public static abstract float height
+            get => _width;
+        }
+        public static float height
         {
             get => _height;  
-        };
-        public static abstract float widthRatio
+        }
+        public static float widthRatio
         {
             get => _widthRatio;  
-        };
-        public static abstract float heightRatio
+        }
+        public static float heightRatio
         {
             get => _heightRatio;
-        };
+        }
         public static Texture2D sprite;
 
         public static int health = 1; //Player's Health

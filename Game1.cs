@@ -32,8 +32,7 @@ namespace StreamGame
             _graphics.IsFullScreen = false;
             _graphics.ApplyChanges();
             base.Initialize();
-            Player.heightRatio = Player.height / Player.sprite.Height;
-            Player.widthRatio = Player.width / Player.sprite.Width;
+            Player.changeSizes(30,60);
             tiles.Add(new Tile(-75 + (-1 * 75), -75 + (-1 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
             tiles.Add(new Tile(-75 + (0 * 75), -75 + (0 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
             tiles.Add(new Tile(-75 + (3 * 75), -75 + (1 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
