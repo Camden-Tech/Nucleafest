@@ -64,8 +64,7 @@ namespace StreamGame
         {
             if (Player.bottomLeftHitbox.Y + Player.y <= topLeftHitbox.Y + y && Player.bottomLeftHitbox.Y + Player.y >= bottomLeftHitbox.Y + y && ((Player.bottomLeftHitbox.X + Player.x > bottomLeftHitbox.X + x && Player.bottomLeftHitbox.X + Player.x < bottomRightHitbox.X + x) || (Player.bottomRightHitbox.X + Player.x > bottomLeftHitbox.X + x && Player.bottomRightHitbox.X + Player.x < bottomRightHitbox.X + x)))
             {
-                
-                Player.y = topLeftHitbox.Y + y - Player.bottomLeftHitbox.Y;
+                Player.changePosition(Player.x, topLeftHitbox.Y + y - Player.bottomLeftHitbox.Y);
                 Player.onGround = true;
                 return true;
             }

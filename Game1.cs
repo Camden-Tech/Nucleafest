@@ -103,8 +103,7 @@ namespace StreamGame
             
 
             Player.dashingCooldown -= 1;
-            Player.x += Player.xVelocity;
-            Player.y += -Player.timeInAir + Player.yVelocity;
+            Player.changePosition(Player.x + Player.xVelocity, Player.y - Player.timeInAir + Player.yVelocity);
             Player.xVelocity = Player.xVelocity / 1.5f;
             base.Update(gameTime);
         }

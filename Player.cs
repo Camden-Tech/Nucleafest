@@ -15,21 +15,11 @@ namespace StreamGame
         private static float _y = 570; //Y Position
         public static float x
         {
-          get => _x;  
-          set
-          {
-              _x = value;
-              //Check for possible chunk load
-          }
+            get => _x;
         }
         public static float y
         {
-          get => _y;
-          set
-          {
-              _y = value;
-              //Check for possible chunk load
-          }
+            get => _y;
         }
         private static float _width = 30;
         private static float _height = 60;
@@ -95,6 +85,20 @@ namespace StreamGame
             _height = h;
             _heightRatio = height / sprite.Height;
             _widthRatio = width / sprite.Width;
+        }
+
+        public static void changePosition(float xP, float yP)
+        {
+            _x = xP;
+            _y = yP;
+            for (int xC = 0; xC < (Chunk.chunkLoadDistance / Chunk.chunkLength * 2); xC++)
+            {
+                for (int yC = 0; yC < (Chunk.chunkLoadDistance / Chunk.chunkLength * 2); yC++)
+                {
+                    Chunk.attemptLoadChunk(xC, yC);
+                }
+            }
+
         }
 
         public static Boolean attemptDash()
