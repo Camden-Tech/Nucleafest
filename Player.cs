@@ -158,6 +158,37 @@ namespace StreamGame
 
             }
         }
+        
+        public static void onTouchGround(){
+            Player.yVelocity = 0;
+            Player.timeInAir = 0;
+            Player.timeOnGround += 1;
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                Player.attemptJump();
+            }
+        }
+        
+        public static void onInAir(){
+            Player.timeOnGround = 0;
+            if (Player.maxGravitySpeed > Player.timeInAir)
+            {
+                Player.timeInAir += 0.5f;
+            }
+        }
+        
+        public static void movePlayer(bool left){
+            if(Player.dashingCooldown - Player.dTime <= 0)
+            {
+                if(left) {
+                    Player.xVelocity = Player.walkingSpeed;
+                } else {
+                    Player.xVelocity = -Player.walkingSpeed;
+                }
+                
+            }
+        }
+        
 
 
         public static Boolean attemptJump() //Space and Jump have already been confirmed
