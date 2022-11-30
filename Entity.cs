@@ -10,16 +10,8 @@ namespace StreamGame
 {
     public class Entity
     {
-        private float _x;
-        private float _y;
-        public float x
-        {
-            get => _x;
-        }
-        public float y
-        {
-            get => _y;
-        }
+        public float x;
+        public float y;
         public float xVelocity;
         public float yVelocity;
         public string Name;
@@ -52,19 +44,6 @@ namespace StreamGame
         public Texture2D sprite;
         public int time;
         public List<float> aiVariables;
-        
-        public void changePositions(float xP, float yP}){
-            _x = xP;
-            _y = yP;
-            Vector2 coords = Chunk.inWhatChunk(x,y);
-            if(Respawnable){
-               if(!Chunk.chunkIsLoaded(coords.x,coords.y)){
-                    exists = false;
-               }
-            } else {
-                Chunk.attemptLoadChunk(coords.x,coords.y);
-            }
-        }
         
         public void changeSizes(float w, float h)
         {
