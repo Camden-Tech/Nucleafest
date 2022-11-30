@@ -50,73 +50,102 @@ namespace StreamGame
 		{
 			if (checkIfLoaded())
 			{
+				Vector2 coords;
 				for (int i = 0; i < tiles.Count; i++)
 				{
 					Tile t = tiles[i];
 					//Tile code stuff
-					if (!isStillInChunk((int)t.x, (int)t.y))
+					coords = Chunk.inWhatChunk(t.x,t.y);
+					
+					Chunk c = Chunk.chunkIsLoaded(coords.x,coords.y);
+					if (c != this)
 					{
-						//Add to other chunk
-						//Remove from current chunk
+						if(c == null){
+							t.exists = false;
+							this.tiles.remove(t);
+					        } else {
+							
+							c.tiles.add(t);
+							this.tiles.remove(t);
+						}
 					}
 				}
 				for (int i = 0; i < entities.Count; i++)
 				{
 					Entity e = entities[i];
-					//Entity code stuff
-					if (!isStillInChunk((int)e.x, (int)e.y))
+					coords = Chunk.inWhatChunk(e.x,e.y);
+					
+					Chunk c = Chunk.chunkIsLoaded(coords.x,coords.y);
+					if (c != this)
 					{
-						//Add to other chunk
-						//Remove from current chunk
+					    if(e.Respawnable){
+					       if(c == null){
+							e.exists = false;
+						       this.entities.remove(e);
+					       } else {
+
+							c.entities.add(e);
+							this.entities.remove(e);
+					       }
+					    } else {
+						Chunk.attemptLoadChunk(coords.x,coords.y);
+					    }
 					}
 				}
 				for (int i = 0; i < projectiles.Count; i++)
 				{
 					Projectile p = projectiles[i];
-					//Projectile code stuff
-					if (!isStillInChunk((int)p.x, (int)p.y))
+					coords = Chunk.inWhatChunk(p.x,p.y);
+					
+					Chunk c = Chunk.chunkIsLoaded(coords.x,coords.y);
+					if (c != this)
 					{
-						//Add to other chunk
-						//Remove from current chunk
-					}
+						if(c == null){
+							p.exists = false;
+							this.projectiles.remove(p);
+					        } else {
+							c.projectiles.add(p);
+							this.projectiles.remove(p);
+						}
+					} 
 				}
 			}
 		}
 		
-		public static Boolean chunkIsLoaded(int x, int y){
+		public static Chunk chunkIsLoaded(int xP, int yP){
 			for(int i = 0; i < loadedChunks.Count; i++)
 			{
 				Chunk c = loadedChunks[i];
-                if (c.x == x && c.y == y)
-                {
-					return true;
-                }
+             			if (c.x == xP && c.y == yP)
+             		 	{
+					return c;
+              		  	}
 			}
-			return false;
+			return null;
 		}
 		
 		
-		public static Vector2 inWhatChunk(int X, int Y)
+		public static Vector2 inWhatChunk(int Xp, int Yp)
 		{
-			return new Vector2(X / chunkLength, Y / chunkLength);
+			return new Vector2(Xp / chunkLength, Yp / chunkLength);
 		}
 		
-		public static void attemptLoadChunk(int x, int y)
+		public static void attemptLoadChunk(int xP, int yP)
 		{
 
-            if (chunkIsLoaded(x,y))
-            {
+         		if (chunkIsLoaded(xP,yP))
+          		{
 				return;
-            }
-			Chunk c = new Chunk(x,y);
+           		}
+			Chunk c = new Chunk(xP,yP);
 			loadedChunks.Add(c);
 
 
 		}
 		
-		public Boolean isStillInChunk(int X, int Y)
+		public Boolean isStillInChunk(int xP, int uP)
 		{
-			if (inWhatChunk(X, Y).Equals(new Vector2(x, y)))
+			if (inWhatChunk(xP, yP).Equals(new Vector2(x, y)))
 			{
 				return true;
 			}
