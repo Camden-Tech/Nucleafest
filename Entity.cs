@@ -14,6 +14,8 @@ namespace StreamGame
         public float y;
         public float xVelocity;
         public float yVelocity;
+        public string Name;
+        public bool Respawnable;
         private float _width;
         private float _height;
         private float _heightRatio;
@@ -41,10 +43,9 @@ namespace StreamGame
         public Texture2D sprite;
         public int time;
         public List<float> aiVariables;
+        
         public void changeSizes(float w, float h)
         {
-            
-
             _width = w;
             _height = h;
             _heightRatio = height / sprite.Height;
