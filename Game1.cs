@@ -58,11 +58,11 @@ namespace StreamGame
             MouseState mouseInput = Mouse.GetState();
             if (Keyboard.GetState().IsKeyDown(Keys.D) && Player.dashingCooldown - Player.dTime <= 0)
             {
-                Player.xVelocity = Player.walkingSpeed;
+                Player.movePlayer(false);
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.A) && Player.dashingCooldown - Player.dTime <= 0)
             {
-                Player.xVelocity = -Player.walkingSpeed;
+                Player.movePlayer(true);
             }
            
             if (Keyboard.GetState().IsKeyDown(Keys.W))
@@ -81,23 +81,12 @@ namespace StreamGame
 
             if (!Player.onGround)
             {
-                Player.timeOnGround = 0;
-                if (Player.maxGravitySpeed > Player.timeInAir)
-                {
-                    Player.timeInAir += 0.5f;
-                }
+                Player.onInAir();
                 
             }
             else
             {
-                Player.yVelocity = 0;
-                Player.timeInAir = 0;
-                Player.timeOnGround += 1;
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                {
-                    Player.attemptJump();
-                }
-                
+                Player.onTouchGround();
             }
             
             
