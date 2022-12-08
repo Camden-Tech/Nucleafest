@@ -54,7 +54,7 @@ namespace StreamGame
 				for (int i = 0; i < tiles.Count; i++)
 				{
 					Tile t = tiles[i];
-					//Tile code stuff
+					t.update();
 					coords = Chunk.inWhatChunk(t.x,t.y);
 					
 					Chunk c = Chunk.chunkIsLoaded(coords.x,coords.y);
@@ -74,7 +74,7 @@ namespace StreamGame
 				{
 					Entity e = entities[i];
 					coords = Chunk.inWhatChunk(e.x,e.y);
-					
+					e.update();
 					Chunk c = Chunk.chunkIsLoaded(coords.x,coords.y);
 					if (c != this)
 					{
@@ -96,7 +96,7 @@ namespace StreamGame
 				{
 					Projectile p = projectiles[i];
 					coords = Chunk.inWhatChunk(p.x,p.y);
-					
+					p.update();
 					Chunk c = Chunk.chunkIsLoaded(coords.x,coords.y);
 					if (c != this)
 					{
