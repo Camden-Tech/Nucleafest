@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -101,8 +106,8 @@ namespace StreamGame
 
         }
         
-        public void updatePlayer(){
-                 MouseState mouseInput = Mouse.GetState();
+        public static void updatePlayer(){
+                MouseState mouseInput = Mouse.GetState();
                 if (Keyboard.GetState().IsKeyDown(Keys.D) && Player.dashingCooldown - Player.dTime <= 0)
                 {
                     Player.movePlayer(false);
