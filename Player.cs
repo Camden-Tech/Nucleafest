@@ -100,7 +100,51 @@ namespace StreamGame
             }
 
         }
+        
+        public void updatePlayer(){
+                 MouseState mouseInput = Mouse.GetState();
+                if (Keyboard.GetState().IsKeyDown(Keys.D) && Player.dashingCooldown - Player.dTime <= 0)
+                {
+                    Player.movePlayer(false);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.A) && Player.dashingCooldown - Player.dTime <= 0)
+                {
+                    Player.movePlayer(true);
+                }
 
+                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                {
+                    Player.attemptDash();
+                }
+                Player.commenceDash();
+                Player.onGround = false;
+                for (int i = 0; i < tiles.Count; i++)
+                {
+                    Tile t = tiles[i];
+                    t.groundCheck();
+
+                }
+
+
+                if (!Player.onGround)
+                {
+                    Player.onInAir();
+
+                }
+                else
+                {
+                    Player.onTouchGround();
+                }
+
+
+
+                Player.dashingCooldown -= 1;
+                Player.changePosition(Player.x + Player.xVelocity, Player.y - Player.timeInAir + Player.yVelocity);
+                Player.xVelocity = Player.xVelocity / 1.5f;   
+        }
+        
+        
+        
         public static Boolean attemptDash()
         {
             if (Player.dashingCooldown <= 0)
