@@ -58,7 +58,12 @@ namespace StreamGame
 			_heightRatio = height / sprite.Height;
 			_widthRatio = width / sprite.Width;
 		}
-
+		
+		
+		public void update(){
+		    //Event to be overrided   
+		}
+		
 		public Boolean CheckHitboxWithEntity(Entity e){
 			Vector2 tMidPoint = new Vector2(width / 2 + x, height / 2 + y);
 			Vector2 eMidPoint = new Vector2(e.width / 2 + e.x, e.height / 2 + e.y);
