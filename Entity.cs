@@ -45,6 +45,10 @@ namespace StreamGame
         public int time;
         public List<float> aiVariables;
         
+        public void update(){
+            //Event to be overrided   
+        }
+        
         public void changeSizes(float w, float h)
         {
             _width = w;
