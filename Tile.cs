@@ -13,25 +13,25 @@ namespace StreamGame
         public float x;
         public float y;
         private float _width;
-		private float _height;
-		private float _heightRatio;
-		private float _widthRatio;
-		public float width
-		{
-			get => _width;  
-		}
-		public float height
-		{
-			get => _height;  
-		}
-		public float widthRatio
-		{
-			get => _widthRatio;  
-		}
-		public float heightRatio
-		{
-			get => _heightRatio;
-		}
+	private float _height;
+	private float _heightRatio;
+	private float _widthRatio;
+	public float width
+	{
+		get => _width;  
+	}
+	public float height
+	{
+		get => _height;  
+	}
+	public float widthRatio
+	{
+		get => _widthRatio;  
+	}
+	public float heightRatio
+	{
+		get => _heightRatio;
+	}
         public Texture2D sprite;
         public Vector2 topRightHitbox;
         public Vector2 bottomRightHitbox;
@@ -59,6 +59,10 @@ namespace StreamGame
             _height = h;
             _heightRatio = height / sprite.Height;
             _widthRatio = width / sprite.Width;
+        }
+	    
+        public void update(){
+            //Event to be overrided   
         }
         public Boolean groundCheck()
         {
