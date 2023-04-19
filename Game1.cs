@@ -12,6 +12,7 @@ namespace StreamGame
         private SpriteBatch _spriteBatch;
         public GameState gameState = GameState.StartMenu;
         public List<Tile> tiles = new List<Tile>();
+        public static HashMap<String, Texture2d> textures = new HashMap<String, Texture2d>();
         
         public enum GameState {
             StartMenu, 
@@ -33,21 +34,23 @@ namespace StreamGame
             _graphics.ApplyChanges();
             base.Initialize();
             Player.changeSizes(30,60);
-            tiles.Add(new Tile(-75 + (-1 * 75), -75 + (-1 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (0 * 75), -75 + (0 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (3 * 75), -75 + (1 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (5 * 75), -75 + (2 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (6 * 75), -75 + (3 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (7 * 75), -75 + (4 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (9 * 75), -75 + (5 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (10 * 75), -75 + (4 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
-            tiles.Add(new Tile(-75 + (12 * 75), -75 + (5 * 75), 75, 75, Content.Load<Texture2D>("Basic Tile")));
+            tiles.Add(new Tile(-75 + (-1 * 75), -75 + (-1 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (0 * 75), -75 + (0 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (3 * 75), -75 + (1 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (5 * 75), -75 + (2 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (6 * 75), -75 + (3 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (7 * 75), -75 + (4 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (9 * 75), -75 + (5 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (10 * 75), -75 + (4 * 75), 75, 75, "Basic Tile"));
+            tiles.Add(new Tile(-75 + (12 * 75), -75 + (5 * 75), 75, 75, "Basic Tile"));
+            Player.sprite = "Character";
 
         }
 
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Player.sprite = Content.Load<Texture2D>("Character");
+            textures.put("Character", Content.Load<Texture2D>("Character"));
+            textures.put("Basic Tile", Content.Load<Texture2D>("Basic Tile"));
             
         }
 
@@ -63,13 +66,13 @@ namespace StreamGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null);
-            _spriteBatch.Draw(Player.sprite, new Vector2(GraphicsDevice.DisplayMode.Width / 2, GraphicsDevice.DisplayMode.Height / 2), null, Color.White, 0, new Vector2(0, 0), new Vector2(Player.widthRatio, Player.heightRatio), SpriteEffects.None, 1);
-            _spriteBatch.Draw(Player.sprite, new Vector2(-20, -20), null, Color.White, 0, new Vector2(0, 0), new Vector2(Player.widthRatio, Player.heightRatio), SpriteEffects.None, 1);
+            _spriteBatch.Draw(textures.get(Player.sprite), new Vector2(GraphicsDevice.DisplayMode.Width / 2, GraphicsDevice.DisplayMode.Height / 2), null, Color.White, 0, new Vector2(0, 0), new Vector2(Player.widthRatio, Player.heightRatio), SpriteEffects.None, 1);
+            _spriteBatch.Draw(textures.get(Player.sprite), new Vector2(-20, -20), null, Color.White, 0, new Vector2(0, 0), new Vector2(Player.widthRatio, Player.heightRatio), SpriteEffects.None, 1);
 
             for (int i = 0; i < tiles.Count; i++)
             {
                 Tile t = tiles[i];
-                _spriteBatch.Draw(t.sprite, new Vector2(t.x - Player.x + GraphicsDevice.DisplayMode.Width / 2, -t.y + Player.y + GraphicsDevice.DisplayMode.Height / 2), null, Color.White, 0, new Vector2(0, 0), new Vector2(t.widthRatio, t.heightRatio), SpriteEffects.None, 1);
+                _spriteBatch.Draw(textures.get(t.sprite), new Vector2(t.x - Player.x + GraphicsDevice.DisplayMode.Width / 2, -t.y + Player.y + GraphicsDevice.DisplayMode.Height / 2), null, Color.White, 0, new Vector2(0, 0), new Vector2(t.widthRatio, t.heightRatio), SpriteEffects.None, 1);
 
             }
             base.Draw(gameTime);
