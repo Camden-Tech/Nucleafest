@@ -41,7 +41,7 @@ namespace StreamGame
         public int maxHealth;
         public int health;
         public int UUID;
-        public Texture2D sprite;
+        public String sprite;
         public int time;
         public List<float> aiVariables;
         
