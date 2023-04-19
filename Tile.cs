@@ -32,14 +32,14 @@ namespace StreamGame
 	{
 		get => _heightRatio;
 	}
-        public Texture2D sprite;
+        public String sprite;
         public Vector2 topRightHitbox;
         public Vector2 bottomRightHitbox;
         public Vector2 topLeftHitbox;
         public Vector2 bottomLeftHitbox;
         public int UUID;
 
-        public Tile(float X, float Y, float W, float H, Texture2D Sprite)
+        public Tile(float X, float Y, float W, float H, String Sprite)
         {
             x = X;
             y = Y;
