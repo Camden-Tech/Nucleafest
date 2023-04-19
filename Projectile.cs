@@ -33,7 +33,7 @@ namespace StreamGame
 		{
 			get => _heightRatio;
 		}
-		public Texture2D sprite;
+		public String sprite;
 		public int damage;
 		public int time;
 		public List<float> aiVariables;
@@ -76,7 +76,7 @@ namespace StreamGame
 			if(distanceSquared.X <= 0 && distanceSquared.Y <= 0){
 				return true;
 			} else {
-			return false;
+				return false;
 			}
 		
 		}
