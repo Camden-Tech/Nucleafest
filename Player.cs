@@ -46,7 +46,7 @@ namespace StreamGame
         {
             get => _heightRatio;
         }
-        public static Texture2D sprite;
+        public static String sprite;
 
         public static int health = 1; //Player's Health
         public static int maxHealth = 1; //Change this * //Players Max Health
