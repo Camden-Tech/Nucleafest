@@ -24,7 +24,7 @@ namespace StreamGame
 		private List<Entity> entities;
 		public const int chunkLength = 1500; //I have to hardcode this. The amount of effort I'll have to put it in order to NOT would honestly be too much and not enough reward
 		public const int chunkLoadDistance = 4500; //Change this later to be configured in options menu. Also prevent yml changes to the file in order to change how far is can load below the minimum limit
-		public static List<Chunk> loadedChunks = new List<Chunk>();
+		public static HashMap<HashMap<Integer,Integer>, Chunk> loadedChunks = new HashMap<HashMap<Integer,Integer>, Chunk>();
 		
 		public Chunk(int xPos, int yPos){
 			//load tiles, projectiles, and entities from file if a file exists
@@ -113,9 +113,9 @@ namespace StreamGame
 		}
 		
 		public static Chunk chunkIsLoaded(int xP, int yP){
-			for(int i = 0; i < loadedChunks.Count; i++)
+			for(HashMap<Integer, Integer> coords : loadedChunks.keySet())
 			{
-				Chunk c = loadedChunks[i];
+				Chunk c = loadedChunks.get(coords);
              			if (c.x == xP && c.y == yP)
              		 	{
 					return c;
